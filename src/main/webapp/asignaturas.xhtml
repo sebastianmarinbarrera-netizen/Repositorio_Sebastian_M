@@ -20,19 +20,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <h:panelGrid columns="3">
 
         <p:outputLabel for="txtCodigo" value="Código : " />
-        <p:inputText id="txtCodigo"></p:inputText>
-        <p:message for="txtCodigo"></p:message>
+        <p:inputText id="txtCodigo" value="#{asignaturaCtrl.asignatura.codigo}"></p:inputText>
+        <p:message for="txtCodigo" ></p:message>
 
         <p:outputLabel for="txtNombre" value="Nombre : " />
-        <p:inputText id="txtNombre"></p:inputText>
+        <p:inputText id="txtNombre" value="#{asignaturaCtrl.asignatura.nombre}"></p:inputText>
         <p:message for="txtNombre"></p:message>
 
         <p:outputLabel for="txtCreditos" value="Créditos : " />
-        <p:inputNumber id="txtCreditos"></p:inputNumber>
+        <p:inputNumber id="txtCreditos" value="#{asignaturaCtrl.asignatura.creditos}"></p:inputNumber>
         <p:message for="txtCreditos"></p:message>
 
         <p:outputLabel for="txtIntensidad" value="Intensidad : " />
-        <p:inputNumber id="txtIntensidad"></p:inputNumber>
+        <p:inputNumber id="txtIntensidad" value="#{asignaturaCtrl.asignatura.intensidad}" ></p:inputNumber>
         <p:message for="txtIntensidad"></p:message>
 
         </h:panelGrid>
@@ -44,5 +44,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                              style="margin-left: .5em"/>
         </f:facet>
     </p:card>
+        
+        
+     
     </h:body>
 </html>
