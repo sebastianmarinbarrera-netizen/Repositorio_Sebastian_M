@@ -18,11 +18,22 @@ import java.io.Serializable;
 @Named(value = "asignaturaCtrl")
 @SessionScoped
 public class ControladorAsignaturas implements Serializable{
-    private Asignatura asignatura = new Asignatura("70005c","FOPE",(byte)3,(byte)3);
+    private Asignatura asignatura;
 
     public Asignatura getAsignatura() {
         return this.asignatura;
     }
+    
+    public void guardar() {
+
+        System.out.println("Intensidad: " + asignatura.getIntensidad());
+        System.out.println("Nombre: " + asignatura.getNombre());
+
+        // Aquí guardarías en BD
+        // ejemplo:
+        // sensorDAO.guardar(new Sensor(nombre, intensidad));
+    }
+
     
     
 }
