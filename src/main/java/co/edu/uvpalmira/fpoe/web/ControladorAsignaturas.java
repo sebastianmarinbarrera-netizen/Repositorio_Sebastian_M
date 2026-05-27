@@ -4,8 +4,12 @@
  */
 package co.edu.uvpalmira.fpoe.web;
 
+import co.edu.uvpalmira.fpoe.logica.Ilogica;
 import co.edu.uvpalmira.fpoe.modelo.Asignatura;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
 
@@ -18,6 +22,10 @@ import java.io.Serializable;
 @Named(value = "asignaturaCtrl")
 @SessionScoped
 public class ControladorAsignaturas implements Serializable{
+    
+    @Inject
+    private Ilogica ilogica;
+    
     private Asignatura asignatura;
 
     public Asignatura getAsignatura() {
@@ -25,10 +33,15 @@ public class ControladorAsignaturas implements Serializable{
     }
     
     public void guardar() {
-
-        System.out.println("Intensidad: " + asignatura.getIntensidad());
-        System.out.println("Nombre: " + asignatura.getNombre());
-
+        try{
+        this.ilogica.crearAsignatura(this.asignatura);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Asignatura"  + this.asignatura.getNombre()+"fue guardada"));
+        this.asignatura = new Asignatura();
+        }catch (Exception ex){
+            
+        }
+        
+        
         // Aquí guardarías en BD
         // ejemplo:
         // sensorDAO.guardar(new Sensor(nombre, intensidad));

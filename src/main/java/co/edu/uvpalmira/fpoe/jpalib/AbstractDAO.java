@@ -46,6 +46,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> implements Serializa
                 em.close();
             }
         }
+        
     }
 
     public void edit(T entity) throws NonexistentEntityException, Exception {
