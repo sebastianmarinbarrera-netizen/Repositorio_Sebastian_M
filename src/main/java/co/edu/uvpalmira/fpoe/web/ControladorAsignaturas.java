@@ -12,6 +12,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 
 
@@ -27,24 +28,38 @@ public class ControladorAsignaturas implements Serializable{
     private Ilogica ilogica;
     
     private Asignatura asignatura;
+    
+    public ControladorAsignaturas() {
+        this.asignatura = new Asignatura();
+    }
 
     public Asignatura getAsignatura() {
         return this.asignatura;
     }
     
+    
     public void guardar() {
         try{
         this.ilogica.crearAsignatura(this.asignatura);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Asignatura"  + this.asignatura.getNombre()+"fue guardada"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Proceso terminado"));
         this.asignatura = new Asignatura();
         }catch (Exception ex){
             
-        }
-        
-        
+        }    
         // Aquí guardarías en BD
         // ejemplo:
         // sensorDAO.guardar(new Sensor(nombre, intensidad));
+    }
+    
+    public void cancelar(){
+        this.asignatura = new Asignatura();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Proceso terminado"));
+    }
+    
+    public List<Asignatura> getAsignaturas(){
+        System.out.println("Asignatura = " + asignatura);
+        return this.ilogica.buscarAsignaturas();
+        
     }
 
     

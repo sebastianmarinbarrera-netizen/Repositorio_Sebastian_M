@@ -15,5 +15,5 @@ dependencies {
     implementation("org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.8")
 
     // Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
-    // implementation("com.mysql:mysql-connector-j:9.7.0")
+    implementation("com.mysql:mysql-connector-j:9.7.0")
 }

@@ -19,6 +19,7 @@ import java.util.List;
  */
 @ApplicationScoped
 public class LogicaImplementacion implements Ilogica {
+    
     @PersistenceUnit (name="ProyectoPU")
     private EntityManagerFactory emf;
 

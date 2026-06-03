@@ -14,36 +14,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+        <h:form id="formulario">
         <p:card style="width: 35rem; margin-bottom: 2em">
         <f:facet name="title">Gestionar Asignaturas</f:facet>
+        
+        
+            <h:panelGrid columns="3">
 
-    <h:panelGrid columns="3">
+                <p:outputLabel for="txtCodigo" value="Código : " />
+                <p:inputText id="txtCodigo" value="#{asignaturaCtrl.asignatura.codigo}"></p:inputText>
+                <p:message for="txtCodigo" ></p:message>
 
-        <p:outputLabel for="txtCodigo" value="Código : " />
-        <p:inputText id="txtCodigo" value="#{asignaturaCtrl.asignatura.codigo}"></p:inputText>
-        <p:message for="txtCodigo" ></p:message>
+                <p:outputLabel for="txtNombre" value="Nombre : " />
+                <p:inputText id="txtNombre" value="#{asignaturaCtrl.asignatura.nombre}"></p:inputText>
+                <p:message for="txtNombre"></p:message>
 
-        <p:outputLabel for="txtNombre" value="Nombre : " />
-        <p:inputText id="txtNombre" value="#{asignaturaCtrl.asignatura.nombre}"></p:inputText>
-        <p:message for="txtNombre"></p:message>
+                <p:outputLabel for="txtCreditos" value="Créditos : " />
+                <p:inputNumber id="txtCreditos" value="#{asignaturaCtrl.asignatura.creditos}"></p:inputNumber>
+                <p:message for="txtCreditos"></p:message>
 
-        <p:outputLabel for="txtCreditos" value="Créditos : " />
-        <p:inputNumber id="txtCreditos" value="#{asignaturaCtrl.asignatura.creditos}"></p:inputNumber>
-        <p:message for="txtCreditos"></p:message>
+                <p:outputLabel for="txtIntensidad" value="Intensidad : " />
+                <p:inputNumber id="txtIntensidad" value="#{asignaturaCtrl.asignatura.intensidad}" ></p:inputNumber>
+                <p:message for="txtIntensidad"></p:message>
 
-        <p:outputLabel for="txtIntensidad" value="Intensidad : " />
-        <p:inputNumber id="txtIntensidad" value="#{asignaturaCtrl.asignatura.intensidad}" ></p:inputNumber>
-        <p:message for="txtIntensidad"></p:message>
+                </h:panelGrid>
+        
 
-        </h:panelGrid>
+                <p:messages id="mensajes" globalOnly="true" closable="true"  />
 
-        <f:facet name="footer">
-            <p:commandButton icon="pi pi-check" value="Save" action="#{asignaturaCtrl.guardar()}"/>
-            <p:commandButton icon="pi pi-times" value="Cancel"
-                             styleClass="ui-button-secondary"
-                             style="margin-left: .5em"/>
-        </f:facet>
-    </p:card>
+                <f:facet name="footer">
+                    <p:commandButton icon="pi pi-check" value="Save" 
+                                     action="#{asignaturaCtrl.guardar()}"
+                                     process="@this txtCodigo txtNombre txtCreditos txtIntensidad"
+                                     update="mensajes txtCodigo txtNombre txtCreditos txtIntensidad tabla"/>
+                    <p:commandButton icon="pi pi-times" value="Cancel"
+                                     styleClass="ui-button-secondary"
+                                     style="margin-left: .5em"
+                                     action="#{asignaturaCtrl.cancelar()}"
+                                     process="@this"
+                                     update="mensajes txtCodigo txtNombre txtCreditos txtIntensidad"/>
+                </f:facet>
+            
+            </p:card>
+        </h:form>
+        
+        <p:dataTable id="tabla" value="#{asignaturaCtrl.asignaturas}" var="obj">
+            <p:column headerText="Codigo">#{obj.codigo}</p:column>
+            <p:column headerText="Nombre">#{obj.nombre}</p:column>
+            <p:column headerText="Intensidad">#{obj.intensidad}</p:column>
+            <p:column headerText="Creditos">#{obj.creditos}</p:column>
+        </p:dataTable>
         
         
      
